@@ -1,402 +1,564 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sistema de Rutinas Diarias</title>
-    <style>
-        :root {
-            /* Paleta Base - Diseño Calmado */
-            --bg-body: #f8fafc;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            
-            /* Colores de Navegación */
-            --nav-bg: #ffffff;
-            --nav-active: #0f172a;
-            --nav-inactive: #94a3b8;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>100 planes en pareja para imprimir</title>
+  <style>
+    :root{
+      --wine:#8f1d25;
+      --wine-2:#a12e37;
+      --pink:#f7dfe3;
+      --pink-2:#fbecee;
+      --paper:#ffffff;
+      --bg:#f4f1f1;
+      --text:#24181a;
+      --muted:#6d5a5d;
+      --border:#ead7da;
+      --shadow: 0 14px 34px rgba(66, 24, 28, .10);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;}
+    body{padding:18px 14px 38px}
 
-            /* Colores de Bloques (Pasteles Saturados) */
-            --c-morning: #e0f2fe; --b-morning: #0284c7; /* Azul Cielo */
-            --c-afternoon: #fff7ed; --b-afternoon: #ea580c; /* Naranja Suave */
-            --c-night: #f3e8ff; --b-night: #9333ea; /* Púrpura */
-            --c-check: #dcfce7; --b-check: #16a34a; /* Verde */
-            
-            --c-gray: #f1f5f9; --b-gray: #cbd5e1; /* Estado Completado */
-            
-            /* Variantes extra para bloques internos */
-            --blk-1: #dbeafe; --blk-1-a: #2563eb;
-            --blk-2: #fae8ff; --blk-2-a: #d946ef;
-            --blk-3: #ffedd5; --blk-3-a: #f97316;
-            --blk-4: #ecfccb; --blk-4-a: #84cc16;
-            --blk-5: #ccfbf1; --blk-5-a: #14b8a6;
-            --blk-6: #fee2e2; --blk-6-a: #ef4444;
-        }
+    .toolbar{
+      position: sticky; top: 10px; z-index: 50;
+      display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+      margin: 0 auto 18px; max-width: 1200px;
+      backdrop-filter: blur(6px);
+    }
+    .btn{
+      border:0; cursor:pointer; border-radius:999px;
+      padding:14px 22px; font-weight:800; letter-spacing:.2px;
+      background:var(--wine); color:#fff; box-shadow: var(--shadow);
+      font-size: 16px;
+    }
+    .btn.secondary{background:#fff;color:var(--wine);border:1px solid var(--border)}
+    .btn:active{transform:translateY(1px)}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    .sheet{
+      max-width: 1180px;
+      margin: 0 auto;
+      display:block;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-primary);
-            padding-bottom: 100px; /* Espacio para el menú fijo */
-            padding-top: 10px;
-        }
+    .header-block{
+      background: linear-gradient(180deg, #ffffff 0%, #fff 100%);
+      border:1px solid #e9dddd;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      margin-bottom: 16px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .topbar{
+      background: linear-gradient(90deg, var(--wine) 0%, var(--wine-2) 100%);
+      color:#fff;
+      padding: 14px 16px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .headline{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      min-width:0;
+    }
+    .headline h1{
+      margin:0;
+      font-size: 20px;
+      line-height:1.05;
+      text-transform: uppercase;
+      letter-spacing: 1.1px;
+      font-weight: 900;
+    }
+    .headline .sub{
+      font-size: 11px;
+      opacity:.92;
+      letter-spacing:.3px;
+    }
+    .legend{
+      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 11px; border-radius:999px;
+      font-size: 11px; font-weight:800; letter-spacing:.3px;
+      background: rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.25);
+      white-space:nowrap;
+    }
+    .pill .dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:#fff}
+    .intro{
+      padding: 14px 16px 16px;
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .intro-card{
+      flex:1;
+      background: linear-gradient(180deg, var(--pink-2) 0%, #fff 100%);
+      border:1px solid var(--border);
+      border-radius: 18px;
+      padding:12px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+      min-height: 80px;
+    }
+    .intro-title{
+      margin:0;
+      font-size: 13px;
+      line-height:1.2;
+      font-weight: 900;
+      color: var(--wine);
+      letter-spacing:.2px;
+      text-transform: uppercase;
+    }
+    .intro-text{
+      margin:0;
+      font-size: 11px;
+      line-height:1.45;
+      color: var(--muted);
+    }
+    .couple{
+      width: 118px;
+      flex:0 0 118px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .couple svg{width:100%;height:auto;filter: drop-shadow(0 8px 16px rgba(143,29,37,.12));}
 
-        /* --- Barra de Progreso Superior --- */
-        .progress-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 6px;
-            background: #e2e8f0; z-index: 50;
-        }
-        .progress-bar {
-            height: 100%;
-            background: #10b981;
-            width: 0%;
-            transition: width 0.4s ease;
-        }
+    .cards-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .page{
+      display: contents;
+    }
+    .card{
+      position:relative;
+      border-radius: 18px;
+      min-height: 49mm;
+      background: linear-gradient(180deg, var(--pink-2) 0%, #fff 78%);
+      border:1px solid var(--border);
+      padding: 12px 12px 11px 12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:auto -25% -40% auto;
+      width:120px;height:120px;border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(143,29,37,.08), rgba(143,29,37,0) 68%);
+      pointer-events:none;
+    }
+    .card-top{
+      display:flex; align-items:flex-start; gap:10px;
+    }
+    .num{
+      width: 31px; height: 31px; flex:0 0 31px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #ffd7de 0%, #f5c6ce 100%);
+      color: var(--wine);
+      display:flex; align-items:center; justify-content:center;
+      font-size: 14px; font-weight: 900;
+      box-shadow: inset 0 0 0 1px rgba(143,29,37,.08);
+    }
+    .titlewrap{min-width:0; flex:1}
+    .title{
+      margin:0;
+      font-size: 12px;
+      line-height:1.18;
+      letter-spacing:.2px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color:#24171a;
+      overflow-wrap:anywhere;
+    }
+    .category{
+      display:inline-flex;
+      margin-top: 7px;
+      padding: 4px 8px;
+      border-radius:999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing:.3px;
+      text-transform: uppercase;
+      width: fit-content;
+      border:1px solid transparent;
+    }
+    .economica{ background:#fff0f2; color:#9d2f39; border-color:#f0c7cd; }
+    .elaborada{ background:#f4efe8; color:#8a6138; border-color:#dfd2c0; }
+    .card-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding-top: 10px;
+    }
+    .note{
+      font-size: 10px;
+      line-height:1.2;
+      color: var(--muted);
+      max-width: 72%;
+    }
+    .check{
+      display:flex; align-items:center; gap:8px; flex-shrink:0;
+      font-size: 10px; font-weight: 700;
+      color: var(--muted);
+      user-select:none;
+    }
+    .check input{
+      appearance:none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #ba979d;
+      border-radius: 5px;
+      background:#fff;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      position:relative;
+    }
+    .check input:checked{
+      background: var(--wine);
+      border-color: var(--wine);
+    }
+    .check input:checked::after{
+      content:"✓";
+      color:#fff;
+      font-size: 13px;
+      line-height:1;
+      transform: translateY(-1px);
+      font-weight: 900;
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+    }
 
-        /* --- Contenedor Principal --- */
-        .app-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            opacity: 1;
-            transition: opacity 0.2s ease;
-        }
 
-        /* --- Header de Sección --- */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        h1 { font-size: 1.4rem; font-weight: 800; line-height: 1.2; }
-        .subtitle { font-size: 0.9rem; color: var(--text-secondary); display: block; margin-top: 4px; }
-        
-        .btn-reset {
-            background: white; border: 1px solid #cbd5e1;
-            color: var(--text-secondary); padding: 8px 12px;
-            border-radius: 20px; font-size: 0.8rem; font-weight: 600;
-            cursor: pointer; transition: all 0.2s;
-        }
-        .btn-reset:active { background: #f1f5f9; transform: scale(0.95); }
+    @page{
+      size: letter;
+      margin: 7mm;
+    }
 
-        /* --- Bloques de Rutina --- */
-        .routine-block {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: var(--shadow-card);
-            border-left: 6px solid transparent;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-        }
+    @media print{
+      body{background:#fff; padding:0}
+      .toolbar{display:none !important}
+      .sheet{max-width:none; margin:0;}
+      .header-block{
+        margin: 0 0 3mm 0;
+        border-radius: 0;
+        box-shadow: none;
+        border: 0;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .topbar{padding: 8px 11px 7px}
+      .headline h1{font-size:15px}
+      .headline .sub{font-size:9px}
+      .intro{display:none !important}
 
-        .block-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-        .time-badge {
-            background: rgba(255,255,255,0.7); padding: 4px 8px;
-            border-radius: 6px; font-weight: 700; font-size: 0.95rem;
-        }
-        .block-title { font-size: 1.15rem; font-weight: 700; margin-top: 8px; }
-        .block-objective { font-size: 0.9rem; font-style: italic; opacity: 0.85; margin-bottom: 15px; display: block; }
+      .cards-grid{
+        display:block;
+      }
+      .page{
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        page-break-after: always;
+        break-after: page;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .page:last-child{
+        page-break-after:auto;
+        break-after:auto;
+      }
+      .card{
+        min-height: 34mm;
+        border-radius: 14px;
+        padding: 8px 9px 8px 9px;
+      }
+      .num{
+        width: 24px; height: 24px; flex-basis:24px;
+        font-size: 11px;
+      }
+      .title{font-size: 10px; line-height:1.12}
+      .category{font-size: 8px; padding: 3px 6px; margin-top:5px}
+      .note{font-size: 8px; max-width: 74%}
+      .check{font-size: 8px}
+      .check input{width: 14px; height: 14px}
+      .pill, .intro-card, .card, .topbar{-webkit-print-color-adjust: exact; print-color-adjust: exact;}
+    }
 
-        .steps-list { list-style: none; margin-bottom: 18px; }
-        .steps-list li {
-            position: relative; padding-left: 20px; margin-bottom: 8px;
-            font-size: 1rem; color: #334155;
-        }
-        .steps-list li::before { content: "•"; position: absolute; left: 4px; font-weight: bold; }
-
-        .btn-complete {
-            width: 100%; padding: 12px; border: none; border-radius: 10px;
-            background: white; color: var(--text-primary); font-weight: 700;
-            cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            font-size: 1rem; transition: transform 0.1s;
-        }
-        .btn-complete:active { transform: scale(0.97); }
-        .btn-complete::before { content: "☐"; font-size: 1.2rem; }
-
-        /* --- Estado Completado --- */
-        .routine-block.completed {
-            background-color: var(--c-gray) !important;
-            border-left-color: var(--b-gray) !important;
-            box-shadow: none; border: 1px solid #e2e8f0;
-            transform: scale(0.98); opacity: 0.8;
-        }
-        .routine-block.completed .block-title, 
-        .routine-block.completed .time-badge,
-        .routine-block.completed li { 
-            text-decoration: line-through; color: #94a3b8; 
-        }
-        .routine-block.completed .btn-complete {
-            background: transparent; color: #94a3b8; cursor: default; box-shadow: none;
-        }
-        .routine-block.completed .btn-complete::before { content: "✓"; }
-        .routine-block.completed .btn-complete span { display: none; }
-        .routine-block.completed .btn-complete::after { content: "Completado"; }
-
-        /* --- Navegación Fija Inferior --- */
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: var(--nav-bg);
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-            display: flex; justify-content: space-around; padding: 12px 10px 20px 10px;
-            z-index: 100; border-top: 1px solid #f1f5f9;
-        }
-        .nav-btn {
-            background: transparent; border: none;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: var(--nav-inactive); cursor: pointer;
-            transition: all 0.2s; width: 60px;
-        }
-        .nav-icon {
-            width: 44px; height: 44px; border-radius: 50%;
-            background: #f1f5f9; display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; margin-bottom: 4px; transition: all 0.2s;
-        }
-        .nav-label { font-size: 0.7rem; font-weight: 600; }
-        
-        .nav-btn.active { color: var(--nav-active); }
-        .nav-btn.active .nav-icon {
-            background: var(--nav-active); color: white; transform: translateY(-5px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        }
-
-        /* Estilos específicos de colores de bloque */
-        .b-blue { background-color: var(--blk-1); border-left-color: var(--blk-1-a); }
-        .b-purple { background-color: var(--blk-2); border-left-color: var(--blk-2-a); }
-        .b-orange { background-color: var(--blk-3); border-left-color: var(--blk-3-a); }
-        .b-green { background-color: var(--blk-4); border-left-color: var(--blk-4-a); }
-        .b-teal { background-color: var(--blk-5); border-left-color: var(--blk-5-a); }
-        .b-red { background-color: var(--blk-6); border-left-color: var(--blk-6-a); }
-
-    </style>
+    @media (max-width: 860px){
+      body{padding:12px}
+      .topbar{flex-direction:column;align-items:flex-start}
+      .legend{justify-content:flex-start}
+      .intro{flex-direction:column;align-items:flex-start}
+      .couple{width:100px;flex-basis:auto}
+    }
+    @media (max-width: 560px){
+      .cards-grid{grid-template-columns:1fr;}
+    }
+  </style>
 </head>
 <body>
+  <div class="toolbar">
+    <button class="btn" id="printBtn">Imprimir / guardar PDF</button>
+    <button class="btn secondary" id="resetBtn">Limpiar palomitas</button>
+  </div>
 
-    <!-- Barra de Progreso Global (Top) -->
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
-    </div>
+  <main class="sheet" id="app">
+    <section class="header-block">
+      <div class="topbar">
+        <div class="headline">
+          <h1>Planes originales para hacer en pareja</h1>
+          <div class="sub">Lista imprimible y lista para engargolar · Guardado automático en el navegador</div>
+        </div>
+        <div class="legend">
+          <span class="pill"><span class="dot"></span> Económicas</span>
+          <span class="pill"><span class="dot"></span> Elaboradas</span>
+        </div>
+      </div>
+      <div class="intro">
+        <div class="intro-card">
+          <p class="intro-title">100 actividades para ir tachando</p>
+          <p class="intro-text">En la web se ven corridas de forma continua. Al imprimir, se separan de 10 en 10 y la portada solo aparece en la primera hoja.</p>
+        </div>
+        <div class="couple" aria-hidden="true">
+          <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ffdee4"/>
+                <stop offset="100%" stop-color="#f7bfc8"/>
+              </linearGradient>
+              <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#f4e6d4"/>
+                <stop offset="100%" stop-color="#e6b98b"/>
+              </linearGradient>
+            </defs>
+            <circle cx="120" cy="120" r="106" fill="#fff6f7" stroke="#f0d6da"/>
+            <path d="M85 103c12-19 35-21 48-8 10 10 12 25 7 38-7 17-25 28-45 27-17 0-31-9-39-23-8-15-6-31 5-45 5-5 17-10 24-12z" fill="url(#g1)" opacity=".9"/>
+            <path d="M128 95c8-15 26-23 44-20 13 3 22 11 27 23 5 13 4 27-2 39-8 17-25 28-45 27-17 0-30-9-38-22-7-13-8-28-3-40 2-4 10-10 17-7z" fill="url(#g2)" opacity=".95"/>
+            <circle cx="99" cy="96" r="9" fill="#7b4a40"/>
+            <circle cx="155" cy="95" r="9" fill="#7b4a40"/>
+            <path d="M78 77c16-15 40-15 56-2" fill="none" stroke="#8f1d25" stroke-width="6" stroke-linecap="round"/>
+            <path d="M134 72c18-8 38-4 52 11" fill="none" stroke="#8f1d25" stroke-width="6" stroke-linecap="round"/>
+            <path d="M77 117c17 18 34 24 48 23" fill="none" stroke="#8f1d25" stroke-width="5" stroke-linecap="round"/>
+            <path d="M146 115c-7 20-7 36-2 50" fill="none" stroke="#8f1d25" stroke-width="5" stroke-linecap="round"/>
+            <path d="M94 143c8 15 20 21 31 22" fill="none" stroke="#8f1d25" stroke-width="5" stroke-linecap="round"/>
+            <path d="M156 142c10 12 16 20 17 31" fill="none" stroke="#8f1d25" stroke-width="5" stroke-linecap="round"/>
+            <path d="M117 179c10-8 23-8 34-1" fill="none" stroke="#8f1d25" stroke-width="5" stroke-linecap="round"/>
+            <path d="M114 186c3 7 8 11 15 11s12-4 15-10" fill="none" stroke="#8f1d25" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="63" cy="56" r="7" fill="#ffd6de"/>
+            <circle cx="183" cy="46" r="8" fill="#ffd6de"/>
+            <circle cx="197" cy="179" r="7" fill="#ffd6de"/>
+          </svg>
+        </div>
+      </div>
+    </section>
 
-    <!-- Contenedor Principal Dinámico -->
-    <div class="app-container" id="app">
-        <!-- El contenido se inyecta con JS -->
-    </div>
+    <section class="cards-grid" id="cards"></section>
+  </main>
 
-    <!-- Navegación Fija (Bottom) -->
-    <nav class="bottom-nav">
-        <button class="nav-btn active" onclick="switchSection('morning')">
-            <div class="nav-icon">☀️</div>
-            <span class="nav-label">Mañana</span>
-        </button>
-        <button class="nav-btn" onclick="switchSection('afternoon')">
-            <div class="nav-icon">🌤️</div>
-            <span class="nav-label">Tarde</span>
-        </button>
-        <button class="nav-btn" onclick="switchSection('night')">
-            <div class="nav-icon">🌙</div>
-            <span class="nav-label">Prep.</span>
-        </button>
-        <button class="nav-btn" onclick="switchSection('checklist')">
-            <div class="nav-icon">✅</div>
-            <span class="nav-label">Check</span>
-        </button>
-    </nav>
+  <script>
+    const activities = [
 
-    <script>
-        // ==========================================
-        // BASE DE DATOS DE RUTINAS
-        // ==========================================
-        const appData = {
-            morning: {
-                id: 'morning',
-                title: 'Turno de Trabajo Mañana',
-                timeRange: '4:30 AM – 5:05 AM',
-                storageKey: 'routine_morning_v1',
-                blocks: [
-                    { id: 101, title: 'ACTIVACIÓN', time: '4:30 – 4:35', obj: 'Romper el sueño', color: 'b-blue', steps: ['Sonar la alarma', 'Levantarse ya', 'Ir a la cocina', 'Agua a calentar'] },
-                    { id: 102, title: 'MOCHILA', time: '4:35 – 4:45', obj: 'Mochila lista antes de aseo', color: 'b-orange', steps: ['Mochila vacía', 'Meter tupper', 'Meter ropa trabajo', 'Meter cargador', 'Meter suéter', 'Dejar junto a puerta'] },
-                    { id: 103, title: 'ROPA', time: '4:45 – 4:47', obj: 'Ropa personal lista', color: 'b-purple', steps: ['Revisar camisa', 'Revisar pantalón', 'Revisar calcetas', 'Revisar zapatos', 'Llevar todo al baño'] },
-                    { id: 104, title: 'HIGIENE', time: '4:47 – 4:50', obj: 'Higiene bucal', color: 'b-green', steps: ['Lavarse los dientes bien'] },
-                    { id: 105, title: 'BAÑO', time: '4:50 – 5:00', obj: 'Limpieza y vestir', color: 'b-teal', steps: ['Bañarse', 'Secarse', 'Vestirse', 'Ir al baño (prevención)'] },
-                    { id: 106, title: 'SALIDA', time: '5:00 – 5:05', obj: 'Check final crítico', color: 'b-red', steps: ['Mochila cerrada', 'Comida dentro', 'Ropa trabajo dentro', 'Cargador dentro', 'Llaves y dinero', 'Apagar luces', 'Salir'] }
-                ]
-            },
-            afternoon: {
-                id: 'afternoon',
-                title: 'Turno de Trabajo Tarde',
-                timeRange: '11:30 AM – 12:20 PM',
-                storageKey: 'routine_afternoon_v1',
-                blocks: [
-                    { id: 201, title: 'ACTIVACIÓN', time: '11:30 – 11:35', obj: 'Inicio de rutina', color: 'b-blue', steps: ['Dejar de hacer otras cosas', 'Hidratarse', 'Mentalizarse para salir'] },
-                    { id: 202, title: 'MOCHILA', time: '11:35 – 11:45', obj: 'Armado de equipo', color: 'b-orange', steps: ['Revisar mochila vacía', 'Meter comida del día', 'Meter ropa de trabajo', 'Meter suéter', 'Cargador celular', 'Dejar junto a puerta'] },
-                    { id: 203, title: 'ROPA', time: '11:45 – 11:50', obj: 'Preparación personal', color: 'b-purple', steps: ['Elegir ropa cómoda', 'Revisar zapatos', 'Llevar toalla al baño'] },
-                    { id: 204, title: 'HIGIENE', time: '11:50 – 11:55', obj: 'Limpieza bucal', color: 'b-green', steps: ['Lavarse los dientes', 'Usar hilo dental'] },
-                    { id: 205, title: 'BAÑO', time: '11:55 – 12:10', obj: 'Aseo personal', color: 'b-teal', steps: ['Ducha completa', 'Secarse bien', 'Vestirse', 'Peinarse'] },
-                    { id: 206, title: 'SALIDA', time: '12:10 – 12:20', obj: 'Salida sin estrés', color: 'b-red', steps: ['Verificar mochila completa', 'Verificar llaves', 'Verificar cartera/credencial', 'Cerrar ventanas', 'Salir con tiempo'] }
-                ]
-            },
-            night: {
-                id: 'night',
-                title: 'Preparación Noche Anterior',
-                timeRange: '11:00 PM – 11:30 PM',
-                storageKey: 'routine_night_v1',
-                blocks: [
-                    { id: 301, title: 'COMIDA', time: '23:00', obj: 'Evitar cocinar mañana', color: 'b-green', steps: ['Preparar tupper', 'Dejar en refri o mesa', 'Lavar trastes usados'] },
-                    { id: 302, title: 'ROPA TRABAJO', time: '23:10', obj: 'Uniforme listo', color: 'b-blue', steps: ['Buscar uniforme limpio', 'Doblar ordenado', 'Dejar visible'] },
-                    { id: 303, title: 'ROPA BAÑO', time: '23:15', obj: 'Para vestirse al salir', color: 'b-purple', steps: ['Sacar ropa interior', 'Sacar calcetas', 'Dejar toalla lista'] },
-                    { id: 304, title: 'MOCHILA', time: '23:20', obj: 'Pre-armado', color: 'b-orange', steps: ['Meter cargador', 'Meter suéter', 'Meter libreta/plumas', 'Dejar mochila abierta en silla'] },
-                    { id: 305, title: 'CHECK', time: '23:25', obj: 'Tranquilidad mental', color: 'b-teal', steps: ['Verificar alarma puesta', 'Celular cargando lejos'] }
-                ]
-            },
-            checklist: {
-                id: 'checklist',
-                title: 'Checklist Crítico',
-                timeRange: 'Verificación Final',
-                storageKey: 'routine_checklist_v1',
-                blocks: [
-                    { id: 401, title: 'MOCHILA', time: 'CHECK', obj: '¿Tiene todo?', color: 'b-red', steps: ['¿Está cerrada?', '¿Pesa lo correcto?'] },
-                    { id: 402, title: 'ELEMENTOS', time: 'CHECK', obj: 'Indispensables', color: 'b-orange', steps: ['Comida', 'Ropa trabajo', 'Cargador', 'Suéter'] },
-                    { id: 403, title: 'BOLSILLO', time: 'CHECK', obj: 'Para salir', color: 'b-blue', steps: ['Llaves de casa', 'Dinero / Cartera', 'Credencial trabajo', 'Cubrebocas (si aplica)'] }
-                ]
-            }
-        };
+      { n: 1, t: "Desayuno casero juntos", c: "economica", nte: "Ideal para empezar lento y en casa." },
+      { n: 2, t: "Noche de películas con snacks", c: "economica", nte: "Armen su combo favorito." },
+      { n: 3, t: "Picnic en el parque", c: "economica", nte: "Con una manta basta." },
+      { n: 4, t: "Caminata al atardecer", c: "economica", nte: "Solo aire, charla y calma." },
+      { n: 5, t: "Cocinar una receta nueva", c: "economica", nte: "Elijan algo fácil para los dos." },
+      { n: 6, t: "Hacer tacos en casa", c: "economica", nte: "Noche barata y rica." },
+      { n: 7, t: "Juego de mesa", c: "economica", nte: "Uno corto para reírse mucho." },
+      { n: 8, t: "Karaoke con el celular", c: "economica", nte: "Canten sin pena." },
+      { n: 9, t: "Playlist compartida", c: "economica", nte: "Cada uno agrega sus rolas." },
+      { n: 10, t: "Fotos con el teléfono", c: "economica", nte: "Busquen poses chidas." },
+      { n: 11, t: "Leer el mismo libro", c: "economica", nte: "Aunque sea un capítulo." },
+      { n: 12, t: "Escribir cartas", c: "economica", nte: "Una para guardar y otra para leer." },
+      { n: 13, t: "Hacer un collage de recuerdos", c: "economica", nte: "Pueden usar recortes o screenshots." },
+      { n: 14, t: "Pintar una libreta juntos", c: "economica", nte: "Decoración simple y bonita." },
+      { n: 15, t: "Armar un rompecabezas", c: "economica", nte: "Plan tranquilo de tarde." },
 
-        // ==========================================
-        // ESTADO Y LÓGICA
-        // ==========================================
-        
-        // Estado actual de la aplicación
-        let currentSectionId = 'morning';
-        
-        // Función para cargar estado del localStorage
-        function loadState(key) {
-            return JSON.parse(localStorage.getItem(key)) || [];
-        }
+      { n: 16, t: "Hornear galletas", c: "economica", nte: "Perfecto para quedarse en casa." },
+      { n: 17, t: "Cata de chocolate en casa", c: "economica", nte: "Comparen sabores diferentes." },
+      { n: 18, t: "Reto de preguntas", c: "economica", nte: "Preguntas divertidas o profundas." },
+      { n: 19, t: "Ver fotos viejas", c: "economica", nte: "Recuerdos que dan plática." },
+      { n: 20, t: "Reorganizar su rincón favorito", c: "economica", nte: "Dejen bonito un espacio juntos." },
+      { n: 21, t: "Plantar una maceta", c: "economica", nte: "Una planta pequeña basta." },
+      { n: 22, t: "Paseo en bici", c: "economica", nte: "Ruta corta y relajada." },
+      { n: 23, t: "Desayuno en una cafetería cercana", c: "economica", nte: "Algo simple pero con mood." },
+      { n: 24, t: "Cocinar desayuno sorpresa", c: "economica", nte: "Turnense para sorprender." },
+      { n: 25, t: "Noche de series", c: "economica", nte: "Elijan una sola para avanzar." },
+      { n: 26, t: "Hacer aguas frescas", c: "economica", nte: "Limonada, jamaica o pepino." },
+      { n: 27, t: "Bailar en casa", c: "economica", nte: "Aunque salgan dos pies izquierdos." },
+      { n: 28, t: "Hacer una lista de sueños", c: "economica", nte: "Metas chiquitas y grandes." },
+      { n: 29, t: "Juego de cartas", c: "economica", nte: "Uno rápido para pasar el rato." },
+      { n: 30, t: "Dibujar a mano al otro", c: "economica", nte: "Sin editar, puro talento." },
 
-        // Función para guardar estado
-        function saveState(key, data) {
-            localStorage.setItem(key, JSON.stringify(data));
-        }
+      { n: 31, t: "Probar postres caseros", c: "economica", nte: "Una mini ruta dulce." },
+      { n: 32, t: "Meditar juntos", c: "economica", nte: "Cinco minutos también cuentan." },
+      { n: 33, t: "Sesión de estiramientos", c: "economica", nte: "Suave y sin complicarse." },
+      { n: 34, t: "Limpiar con música", c: "economica", nte: "Sí, también puede ser plan." },
+      { n: 35, t: "Visitar un mercado local", c: "economica", nte: "Caminen y prueben algo rico." },
+      { n: 36, t: "Tomar café sin celular", c: "economica", nte: "Plática sin distracciones." },
+      { n: 37, t: "Reto de 30 fotos", c: "economica", nte: "Un mini álbum del día." },
+      { n: 38, t: "Ver el amanecer", c: "economica", nte: "Muy bonito si madrugan." },
+      { n: 39, t: "Ver las estrellas", c: "economica", nte: "Búsquenlas lejos de luces." },
+      { n: 40, t: "Cocinar pizza casera", c: "economica", nte: "Desde la masa o en pan." },
+      { n: 41, t: "Noche de trivia", c: "economica", nte: "Adivinen quién sabe más." },
+      { n: 42, t: "Hacer una cápsula del tiempo", c: "economica", nte: "Guarden una nota o foto." },
+      { n: 43, t: "Leer poemas o frases", c: "economica", nte: "Algo corto y bonito." },
+      { n: 44, t: "Decorar tazas", c: "economica", nte: "Con pintura o plumones aptos." },
+      { n: 45, t: "Juegos retro en el celular o consola", c: "economica", nte: "Un poco de nostalgia." },
 
-        // Función principal de renderizado
-        function render() {
-            const container = document.getElementById('app');
-            const data = appData[currentSectionId];
-            const completedBlocks = loadState(data.storageKey);
-            
-            // 1. Actualizar Botones de Navegación
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            // Busca el botón que llama a esta sección (hack simple basado en onclick string)
-            const navButtons = document.querySelectorAll('.nav-btn');
-            if(currentSectionId === 'morning') navButtons[0].classList.add('active');
-            if(currentSectionId === 'afternoon') navButtons[1].classList.add('active');
-            if(currentSectionId === 'night') navButtons[2].classList.add('active');
-            if(currentSectionId === 'checklist') navButtons[3].classList.add('active');
+      { n: 46, t: "Ruta de helados", c: "economica", nte: "Uno o varios puestos, ustedes mandan." },
+      { n: 47, t: "Pasear por el centro histórico", c: "economica", nte: "Caminen sin prisa." },
+      { n: 48, t: "Buscar murales en la ciudad", c: "economica", nte: "Salen fotos muy buenas." },
+      { n: 49, t: "Hacer lista de lugares favoritos", c: "economica", nte: "Dejen guardados sus spots." },
+      { n: 50, t: "Cocinar hot cakes", c: "economica", nte: "Desayuno fácil y rico." },
+      { n: 51, t: "Crear un álbum digital", c: "economica", nte: "Solo con fotos del teléfono." },
+      { n: 52, t: "Hacer una cita en casa", c: "economica", nte: "Decoren la sala un ratito." },
+      { n: 53, t: "Preparar smoothies", c: "economica", nte: "Fruta, hielo y listo." },
+      { n: 54, t: "Noche de dibujos", c: "economica", nte: "Dibujen algo al azar." },
+      { n: 55, t: "Intercambiar playlists", c: "economica", nte: "Una para cada uno." },
+      { n: 56, t: "Probar sándwiches diferentes", c: "economica", nte: "Simple pero entretenido." },
+      { n: 57, t: "Hacer yoga en pareja", c: "economica", nte: "Sin tomarse tan en serio." },
+      { n: 58, t: "Ver un documental juntos", c: "economica", nte: "Uno corto y fácil de seguir." },
+      { n: 59, t: "Verdad o reto suave", c: "economica", nte: "Solo cosas tranquilas." },
+      { n: 60, t: "Preparar palomitas gourmet", c: "economica", nte: "Dulces, saladas o mixtas." },
 
-            // 2. Generar HTML del Header
-            let html = `
-                <header>
-                    <div>
-                        <h1>${data.title}</h1>
-                        <span class="subtitle">${data.timeRange}</span>
-                    </div>
-                    <button class="btn-reset" onclick="resetSection()">Reiniciar</button>
-                </header>
-            `;
+      { n: 61, t: "Hacer un reto de abrazos", c: "economica", nte: "Un plan tonto y bonito." },
+      { n: 62, t: "Ir a una librería", c: "economica", nte: "Lean portadas y elijan una." },
+      { n: 63, t: "Picnic en la sala", c: "economica", nte: "Sí cuenta si no alcanza el clima." },
+      { n: 64, t: "Escribir metas del mes", c: "economica", nte: "Un poquito de organización." },
+      { n: 65, t: "Desayuno de domingo", c: "economica", nte: "Sin prisas, con antojo." },
+      { n: 66, t: "Mini reto de baile", c: "economica", nte: "Una canción cada uno." },
+      { n: 67, t: "Probar cafés distintos", c: "economica", nte: "Comparen su favorito." },
+      { n: 68, t: "Esconder notas amorosas", c: "economica", nte: "Pequeñas sorpresas del día." },
+      { n: 69, t: "Ver un partido juntos", c: "economica", nte: "Con botana y comentarios." },
+      { n: 70, t: "Hacer un mapa de sueños", c: "economica", nte: "Pueden hacerlo en cartulina." },
+      { n: 71, t: "Cocinar sopa o pasta", c: "economica", nte: "Comida fácil y reconfortante." },
+      { n: 72, t: "Manualidades con papel", c: "economica", nte: "Origami, tarjetas o figuras." },
+      { n: 73, t: "Lista de canciones de su relación", c: "economica", nte: "Cada canción con un recuerdo." },
+      { n: 74, t: "Pintar con acuarelas", c: "economica", nte: "Aunque no sean expertos." },
+      { n: 75, t: "Cocina a ciegas", c: "economica", nte: "Solo con cuidado y risas." },
 
-            // 3. Generar Bloques
-            data.blocks.forEach(block => {
-                const isCompleted = completedBlocks.includes(block.id);
-                const stepsHtml = block.steps.map(s => `<li>${s}</li>`).join('');
-                
-                html += `
-                    <div class="routine-block ${block.color} ${isCompleted ? 'completed' : ''}" id="blk-${block.id}">
-                        <div class="block-header">
-                            <div>
-                                <span class="time-badge">${block.time}</span>
-                                <h2 class="block-title">${block.title}</h2>
-                            </div>
-                        </div>
-                        <span class="block-objective">${block.obj}</span>
-                        <ul class="steps-list">
-                            ${stepsHtml}
-                        </ul>
-                        <button class="btn-complete" onclick="toggleBlock(${block.id})">
-                            <span>Marcar como completado</span>
-                        </button>
-                    </div>
-                `;
-            });
+      { n: 76, t: "Chocolate caliente y charla", c: "economica", nte: "Plan sencillo y romántico." },
+      { n: 77, t: "Noche temática italiana en casa", c: "economica", nte: "Pizza, pasta o ambas." },
+      { n: 78, t: "Flores del mercado y decorar un vaso", c: "economica", nte: "Barato y bonito." },
+      { n: 79, t: "Ver una lista de lugares para visitar", c: "economica", nte: "Soñar no cuesta." },
+      { n: 80, t: "Hacer una cena casera con música", c: "economica", nte: "Una mesa bonita cambia todo." },
 
-            container.innerHTML = html;
-            
-            // 4. Actualizar Barra de Progreso
-            updateProgress(data.blocks.length, completedBlocks.length);
-            
-            // Scroll suave arriba al cambiar sección
-            // (Opcional, pero ayuda a sentir el cambio de contexto)
-        }
+      { n: 81, t: "Escape room", c: "elaborada", nte: "Un plan más emocionante." },
+      { n: 82, t: "Clase de baile", c: "elaborada", nte: "Aprendan un ritmo nuevo." },
+      { n: 83, t: "Sesión de fotos profesional", c: "elaborada", nte: "Para guardar recuerdos chidos." },
+      { n: 84, t: "Taller de cerámica", c: "elaborada", nte: "Algo creativo y diferente." },
+      { n: 85, t: "Cena en restaurante nuevo", c: "elaborada", nte: "Prueben algo que no conozcan." },
+      { n: 86, t: "Tour gastronómico local", c: "elaborada", nte: "Varios antojitos en una salida." },
+      { n: 87, t: "Búsqueda del tesoro por la ciudad", c: "elaborada", nte: "Pueden hacer pistas entre ustedes." },
+      { n: 88, t: "Karaoke en sala privada", c: "elaborada", nte: "Más chido que cantar en casa." },
+      { n: 89, t: "Clase de cocina internacional", c: "elaborada", nte: "Aprendan una receta nueva." },
+      { n: 90, t: "Paseo en kayak o paddle board", c: "elaborada", nte: "Si tienen agua cerca." },
+      { n: 91, t: "Noche de teatro", c: "elaborada", nte: "Una experiencia distinta." },
+      { n: 92, t: "Spa en pareja", c: "elaborada", nte: "Para relajarse de verdad." },
+      { n: 93, t: "Cabaña de fin de semana", c: "elaborada", nte: "De las más especiales." },
+      { n: 94, t: "Viaje de un día a un pueblo cercano", c: "elaborada", nte: "Salida corta, pero bonita." },
+      { n: 95, t: "Tour de museos", c: "elaborada", nte: "Bueno para platicar y caminar." },
+      { n: 96, t: "Clase de pintura guiada", c: "elaborada", nte: "Cada quien su versión." },
+      { n: 97, t: "Senderismo en una ruta fácil", c: "elaborada", nte: "Aire libre y movimiento." },
+      { n: 98, t: "Brunch especial en un lugar bonito", c: "elaborada", nte: "Bonito para celebrar." },
+      { n: 99, t: "Curso breve de repostería", c: "elaborada", nte: "Algo dulce y útil." },
+      { n: 100, t: "Paseo en globo aerostático", c: "elaborada", nte: "La más inolvidable de todas." },
+    ];
 
-        // Cambiar sección
-        function switchSection(sectionId) {
-            // Efecto visual de desvanecimiento simple
-            const container = document.getElementById('app');
-            container.style.opacity = '0';
-            
-            setTimeout(() => {
-                currentSectionId = sectionId;
-                render();
-                container.style.opacity = '1';
-                window.scrollTo({top: 0, behavior: 'auto'});
-            }, 200);
-        }
+    const storageKey = 'planes_pareja_checklist_v3';
+    const state = JSON.parse(localStorage.getItem(storageKey) || '{}');
 
-        // Marcar/Desmarcar bloque
-        function toggleBlock(blockId) {
-            const data = appData[currentSectionId];
-            let completed = loadState(data.storageKey);
-            
-            if (completed.includes(blockId)) {
-                completed = completed.filter(id => id !== blockId);
-            } else {
-                completed.push(blockId);
-            }
-            
-            saveState(data.storageKey, completed);
-            render(); // Re-renderizar para actualizar UI
-        }
+    const cardsRoot = document.getElementById('cards');
+    const chunkSize = 10;
+    const pages = [];
 
-        // Reiniciar sección actual
-        function resetSection() {
-            if(confirm('¿Reiniciar esta sección?')) {
-                const data = appData[currentSectionId];
-                saveState(data.storageKey, []);
-                render();
-            }
-        }
+    for (let i = 0; i < activities.length; i += chunkSize) {
+      pages.push(activities.slice(i, i + chunkSize));
+    }
 
-        // Actualizar barra de progreso
-        function updateProgress(total, current) {
-            const percent = total === 0 ? 0 : (current / total) * 100;
-            document.getElementById('progressBar').style.width = `${percent}%`;
-        }
+    function cardHTML(item) {
+      return `
+        <article class="card" data-id="${item.n}">
+          <div class="card-top">
+            <div class="num">${item.n}</div>
+            <div class="titlewrap">
+              <h2 class="title">${item.t}</h2>
+              <div class="category ${item.c}">${item.c === 'economica' ? 'Económica' : 'Elaborada'}</div>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <div class="note">${item.nte}</div>
+            <label class="check" title="Palomear actividad">
+              <input type="checkbox" data-id="${item.n}" />
+            </label>
+          </div>
+        </article>
+      `;
+    }
 
-        // Inicializar
-        document.addEventListener('DOMContentLoaded', () => {
-            render();
-        });
+    pages.forEach((pageItems, idx) => {
+      const page = document.createElement('div');
+      page.className = 'page';
+      page.dataset.page = idx + 1;
+      page.innerHTML = pageItems.map(cardHTML).join('');
+      cardsRoot.appendChild(page);
+    });
 
-    </script>
+    function syncFromStorage(){
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        const id = cb.dataset.id;
+        cb.checked = !!state[id];
+      });
+    }
+
+    function persist(){
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      const id = cb.dataset.id;
+      cb.checked = !!state[id];
+      cb.addEventListener('change', () => {
+        state[id] = cb.checked;
+        persist();
+      });
+    });
+
+    window.addEventListener('beforeunload', persist);
+    syncFromStorage();
+
+    document.getElementById('printBtn').addEventListener('click', () => {
+      persist();
+      window.print();
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      if (!confirm('¿Borrar todas las palomitas guardadas?')) return;
+      for (const k of Object.keys(state)) delete state[k];
+      persist();
+      syncFromStorage();
+    });
+  </script>
 </body>
 </html>
-
-
